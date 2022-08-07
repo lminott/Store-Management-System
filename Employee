@@ -1,0 +1,10 @@
+public class Employee {
+   String name;
+   int employeeID;
+   int salary;
+   public Employee(String nam, int employeeID, int salary) {
+	   this.name=name;
+	   this.employeeID=employeeID;
+	   this.salary=salary;
+   }
+}
