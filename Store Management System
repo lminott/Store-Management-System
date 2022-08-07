@@ -46,7 +46,7 @@ public class StoreManagementSystem {
 	  }
 	  return;
   }
-  public int profitMargin() {
+  public int profit() {
 	  return revenue-expenses;
   }
   public void reStock() {
