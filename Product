@@ -4,11 +4,13 @@ public class Product {
    public int price;
    public int initialAmount;
    public int currentAmount;
-   public Product(String name, int price,int initialAmount, int currentAmount ) {
+   public int benchmark;
+   public Product(String name, int price,int initialAmount, int currentAmount,int benchmark) {
 	   this.name=name;
 	   this.price=price;
 	   this.initialAmount=initialAmount;
 	   this.currentAmount=currentAmount;
-   }
+	   this.benchmark=benchmark;
+	   }
    
 }
