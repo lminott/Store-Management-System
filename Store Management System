@@ -1,15 +1,16 @@
-
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SuperMarketManagementSystem {
+public class StoreManagementSystem {
   public int revenue;
   public int expenses;
   public ArrayList<Product> productList;
-  public  SuperMarketManagementSystem(int revenue, int expenses, ArrayList<Product> productList) {
+  public ArrayList<Employee> employees;
+  public  SuperMarketManagementSystem(int revenue, int expenses, ArrayList<Product> productList,ArrayList<Employee> employees) {
 	  this.revenue=revenue;
 	  this.expenses=expenses;
 	  this.productList=productList;
+	  this.employees=employees;
   }
   public void addProduct(String name,int price,int amount,int benchmark) {
 	  Product newProduct=new Product(name,price,amount,amount,benchmark);
@@ -57,9 +58,24 @@ public class SuperMarketManagementSystem {
 	  }
 	  return;
   }
-  public void otherRandomExpenses() {
-	  Random random=new Random();
-	  expenses+=random.nextInt(expenses);
+  public void hireEmployee(String name, int employeeID,int salary) {
+	  Employee newEmployee=new Employee(name,employeeID,salary);
+	  employees.add(newEmployee);
+	  return;
+  }
+  public void fireEmployee(int employeeID) {
+	  for(int i=0;i<employees.size();i++) {
+		  if(employees.get(i).employeeID==employeeID) {
+			  employees.remove(employees.get(i));
+			  break;
+		  }
+	  }
+	  return;
+  }
+  public void payEmployees() {
+	  for(int i=0;i<employees.size();i++) {
+		  expenses+=employees.get(i).salary;
+	  }
 	  return;
   }
 }
