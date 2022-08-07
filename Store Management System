@@ -1,0 +1,65 @@
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class SuperMarketManagementSystem {
+  public int revenue;
+  public int expenses;
+  public ArrayList<Product> productList;
+  public  SuperMarketManagementSystem(int revenue, int expenses, ArrayList<Product> productList) {
+	  this.revenue=revenue;
+	  this.expenses=expenses;
+	  this.productList=productList;
+  }
+  public void addProduct(String name,int price,int amount) {
+	  Product newProduct=new Product(name,price,amount,amount);
+	  productList.add(newProduct);
+  }
+  public void removeProduct(String name) {
+	  for(int i=0;i<productList.size();i++) {
+		  if(productList.get(i).name==name) {
+			  productList.remove(productList.get(i));
+			  break;
+		  }
+	  }
+	  return;
+  }
+  public void changePrice(String name, int newPrice) {
+	  for(int i=0;i<productList.size();i++) {
+		  if(productList.get(i).name==name) {
+			  productList.get(i).price=newPrice;
+			  break;
+		  }
+	  }
+	  return;
+  }
+  public void dayToDaySimulator() {
+	  Random random=new Random();
+	  for(int i=0;i<productList.size();i++) {
+		  if(productList.get(i).currentAmount==0) {
+			  continue;
+		  }
+		  int amountSold=random.nextInt(productList.get(i).currentAmount);
+		  productList.get(i).currentAmount=productList.get(i).currentAmount-amountSold;
+		  revenue+=amountSold*productList.get(i).price;
+	  }
+	  return;
+  }
+  public int profitMargin() {
+	  return revenue-expenses;
+  }
+  public void reStock(int benchmark) {
+	  for(int i=0;i<productList.size();i++) {
+		  if(productList.get(i).currentAmount<benchmark) {
+			  expenses+=(productList.get(i).initialAmount-productList.get(i).currentAmount)*productList.get(i).price;
+			  productList.get(i).currentAmount=productList.get(i).initialAmount; 
+		 }
+	  }
+	  return;
+  }
+  public void otherRandomExpenses() {
+	  Random random=new Random();
+	  expenses+=random.nextInt(expenses);
+	  return;
+  }
+}
